@@ -44,7 +44,7 @@ USE_CUDA = False
 
 TEST_SIZE = 0.1
 # Read real dataset with pandas read_csv methods
-real = pd.read_csv('majestic_million.csv', usecols=['Domain'])
+real = pd.read_csv("dataset/majestic_onemillion/majestic_million.csv", usecols=['Domain'])
 # train_size = int(real.size * (1 - TEST_SIZE))
 train_size = int(135000 * (1 - TEST_SIZE))
 real_train = real[:train_size]
@@ -72,7 +72,7 @@ real_test['label'] = 1
 
 # In[10]:
 currentDir = os.getcwd()
-dstasetlist = os.listdir(currentDir + '/Dataset')
+dstasetlist = os.listdir(currentDir + '/dataset/DGA-families/')
 # loop dataset directory
 
 fake_train = pd.DataFrame()
@@ -80,7 +80,7 @@ fake_test = pd.DataFrame()
 fake_testWithClass = []
 totoal_malicious_count = 0;
 for f in dstasetlist:
-    faketemp = pd.read_csv(currentDir + '/Dataset/' + f, header=None, usecols=[0], names=['Domain'])
+    faketemp = pd.read_csv(currentDir + '/dataset/DGA-families/' + f, header=None, usecols=[0], names=['Domain'])
     faketemp = faketemp.drop([0], axis=0)
     totoal_malicious_count += faketemp.size;
     train_size = int(faketemp.size * (1 - TEST_SIZE))
